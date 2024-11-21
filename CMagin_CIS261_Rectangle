@@ -1,0 +1,74 @@
+class Rectangle:
+    def __init__(self, height, width):
+        self.height = height
+        self.width = width
+
+    @property
+    def height(self):
+        return self._height
+
+    @height.setter
+    def height(self, value):
+        if value <= 0:
+            raise ValueError("Height must be greater than zero.")
+        self._height = value
+
+    @property
+    def width(self):
+        return self._width
+
+    @width.setter
+    def width(self, value):
+        if value <= 0:
+            raise ValueError("Width must be greater than zero.")
+        self._width = value
+
+    def calculate_perimeter(self):
+        return 2 * (self.height + self.width)
+
+    def calculate_area(self):
+        return self.height * self.width
+
+    def print_rectangle(self):
+        for i in range(self.height):
+            if i == 0 or i == self.height - 1:
+                print("* " * self.width)
+            else:
+                print("*" + "  " * (self.width - 2) + " *")
+
+
+def get_positive_number(prompt):
+    while True:
+        try:
+            value = int(input(prompt))
+            if value <= 0:
+                print("Please enter a positive number.")
+            else:
+                return value
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
+
+
+def main():
+    print("Rectangle Calculator")
+    while True:
+        
+        height = get_positive_number("Height: ")
+        width = get_positive_number("Width: ")
+
+    
+        rectangle = Rectangle(height, width)
+        print(f"Perimeter: {rectangle.calculate_perimeter()}")
+        print(f"Area: {rectangle.calculate_area()}")
+        print()
+
+                rectangle.print_rectangle()
+
+                choice = input("\nContinue? (y/n): ").strip().lower()
+        if choice != 'y':
+            print("Goodbye!")
+            break
+
+
+if __name__ == "__main__":
+    main()
